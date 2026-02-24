@@ -2,11 +2,45 @@
 <html lang="pt-BR">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZ1FF92RK1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FZ1FF92RK1');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr. Fellipe - Advocacia Previdenciária especializada</title>
     <meta name="description"
         content="Consultoria especializada em aposentadorias, revisões e benefícios do INSS. Dr. Fellipe - Atendimento humanizado e focado em resultados reais para você.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Attorney",
+        "name": "Dr. Fellipe - Advocacia Previdenciária",
+        "description": "Consultoria especializada em aposentadorias, revisões e benefícios do INSS. Atendimento humanizado e focado em resultados reais.",
+        "url": "https://drfellipe.com.br",
+        "telephone": "+5531992552080",
+        "areaServed": "BR",
+        "priceRange": "$$",
+        "knowsAbout": ["Direito Previdenciário", "Aposentadoria", "Revisão de Benefício", "INSS", "BPC/LOAS"],
+        "sameAs": [
+            "https://www.instagram.com/fellipe_rosse/"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+5531992552080",
+            "contactType": "customer service",
+            "availableLanguage": "Portuguese"
+        }
+    }
+    </script>
+
     <!-- Open Graph -->
     <meta property="og:title" content="Dr. Fellipe - Advocacia Previdenciária">
     <meta property="og:description" content="Sua aposentadoria com quem entende do assunto.">
@@ -25,13 +59,27 @@
 
 <body>
 
+    <!-- Loading Spinner -->
+    <div id="page-loader" class="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-logo">Dr. <span>Fellipe</span></div>
+        </div>
+    </div>
+
     <!-- Header / Nav -->
     <header>
         <nav class="container">
             <div class="logo">Dr. <span>Fellipe</span></div>
-            <ul class="nav-links">
+            <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Início</a></li>
                 <li><a href="#servicos">Serviços</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
                 <li><a href="#analise" class="btn-cta-nav">Consultar Caso</a></li>
                 <li><a href="https://wa.me/5531992552080" class="btn-whatsapp-nav"><i class="fab fa-whatsapp"></i>
                         Contato</a></li>
@@ -42,14 +90,16 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero reveal">
+
         <div class="container hero-content">
             <div class="hero-text">
                 <h1>Justiça Previdenciária com <span class="highlight">Excelência</span></h1>
                 <p>Especialista em garantir seus direitos perante o INSS. Atendimento humanizado e focado em resultados
                     reais para sua aposentadoria.</p>
                 <div class="hero-btns">
-                    <a href="#analise" class="btn btn-gold">Analisar meu caso agora</a>
+                    <a href="#analise" class="btn btn-gold">Analisar meu caso</a>
+
                     <a href="https://wa.me/5531992552080" class="btn-outline">Falar no WhatsApp</a>
                 </div>
             </div>
@@ -60,7 +110,8 @@
     </section>
 
     <!-- Trust Section (OAB Logos) -->
-    <section class="trust-section">
+    <section class="trust-section reveal">
+
         <div class="container trust-container">
             <p>Advogado devidamente inscrito e regularizado:</p>
             <div class="logo-grid">
@@ -77,66 +128,70 @@
     </section>
 
     <!-- Services Section -->
-    <section id="servicos" class="services">
+    <section id="servicos" class="services reveal">
+
         <div class="container">
             <h2 class="section-title">Nossos Serviços</h2>
             <div class="services-grid">
                 <!-- Cards will be styled in CSS -->
-                <div class="service-card">
+                <div class="service-card reveal">
                     <i class="fas fa-history"></i>
                     <h3>Aposentadoria por tempo de contribuição</h3>
                     <p class="service-description">Para quem completou o tempo necessário antes ou depois da Reforma da
                         Previdência.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
                     <i class="fas fa-user-clock"></i>
                     <h3>Aposentadoria por idade</h3>
                     <p class="service-description">Garantia para quem atingiu a idade mínima e o tempo de carência
                         exigido.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
                     <i class="fas fa-file-invoice-dollar"></i>
                     <h3>Revisão de Aposentadoria</h3>
                     <p class="service-description">Analise se o cálculo do seu benefício está correto e se você pode
                         receber atrasados.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
                     <i class="fas fa-hard-hat"></i>
                     <h3>Aposentadoria Especial</h3>
                     <p class="service-description">Benefício para trabalhadores expostos a agentes nocivos à saúde ou
                         perigosos.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
                     <i class="fas fa-briefcase-medical"></i>
                     <h3>Auxílio-Doença e Benefícios por Incapacidade</h3>
                     <p class="service-description">Suporte para quem está temporariamente ou permanentemente incapaz de
                         trabalhar.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
                     <i class="fas fa-hands-helping"></i>
                     <h3>Pensão por Morte e Auxílio-Reclusão</h3>
                     <p class="service-description">Proteção financeira para os dependentes do segurado em momentos
                         difíceis.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card reveal">
                     <i class="fas fa-blind"></i>
                     <h3>BPC/LOAS</h3>
                     <p class="service-description">Benefício assistencial para idosos ou pessoas com deficiência em
                         situação de vulnerabilidade.</p>
                 </div>
+
             </div>
         </div>
     </section>
 
     <!-- Funnel / Lead Generation Section -->
-    <section id="analise" class="funnel">
+    <section id="analise" class="funnel reveal">
+
         <div class="container">
             <div class="funnel-container">
                 <div class="funnel-header">
                     <h2>Ficou com alguma dúvida sobre seu benefício?</h2>
-                    <p>Preencha os dados abaixo para detalhar seu caso. Você será redirecionado para o meu WhatsApp
-                        pessoal onde farei uma análise gratuita da sua situação.</p>
+                    <p>Preencha os dados abaixo para detalhar sua situação. Você será redirecionado para o meu WhatsApp
+                        pessoal para darmos início ao seu atendimento.</p>
                 </div>
+
                 <form id="leadForm" class="lead-form">
                     <div class="form-group">
                         <label for="nome"><i class="fas fa-user"></i> Nome Completo*</label>
@@ -187,13 +242,12 @@
                     </div>
 
                     <button type="submit" class="btn btn-gold btn-block">
-                        Quero que o Dr. Fellipe analise meu caso agora
+                        Falar com o Dr. Fellipe agora
                     </button>
+
                 </form>
             </div>
         </div>
-    </section>
-
     </section>
 
     <footer>

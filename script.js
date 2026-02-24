@@ -1,3 +1,32 @@
+// ========== Page Loader ==========
+window.addEventListener('load', () => {
+    const loader = document.getElementById('page-loader');
+    if (loader) {
+        setTimeout(() => {
+            loader.classList.add('hidden');
+        }, 400);
+    }
+});
+
+// ========== Hamburger Menu ==========
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('open');
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('open');
+        });
+    });
+}
+
 // WhatsApp Masking
 const whatsappInput = document.getElementById('whatsapp');
 
@@ -36,7 +65,7 @@ if (leadForm) {
             submitBtn.innerHTML = '<i class="fas fa-check"></i> Sucesso! Redirecionando...';
 
             // Format message for WhatsApp
-            const message = `Olá Dr. Fellipe, gostaria de uma análise para o meu caso:%0A%0A*Nome:* ${data.nome}%0A*WhatsApp:* ${data.whatsapp}%0A*Tempo de Contribuição:* ${data.tempo}%0A*Benefício:* ${data.beneficio}%0A*Caso:* ${data.caso}`;
+            const message = `Olá Dr. Fellipe, gostaria de falar sobre o meu caso:%0A%0A*Nome:* ${data.nome}%0A*WhatsApp:* ${data.whatsapp}%0A*Tempo de Contribuição:* ${data.tempo}%0A*Benefício:* ${data.beneficio}%0A*Caso:* ${data.caso}`;
 
             // Redirect to WhatsApp Link
             const whatsappLink = `https://wa.me/5531992552080?text=${message}`;
@@ -96,3 +125,17 @@ document.querySelectorAll('.service-card').forEach(card => {
         */
     });
 });
+// Scroll Reveal Animation with IntersectionObserver
+const revealElements = document.querySelectorAll('.reveal');
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+revealElements.forEach(el => revealObserver.observe(el));

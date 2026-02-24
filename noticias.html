@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZ1FF92RK1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FZ1FF92RK1');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notícias e Decisões Judiciais | Dr. Fellipe Advocacia Previdenciária</title>
+    <meta name="description"
+        content="Informativo jurídico com notícias do mundo previdenciário e decisões judiciais favoráveis.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Attorney",
+        "name": "Dr. Fellipe - Advocacia Previdenciária",
+        "description": "Consultoria especializada em aposentadorias, revisões e benefícios do INSS.",
+        "url": "https://drfellipe.com.br",
+        "telephone": "+5531992552080",
+        "areaServed": "BR",
+        "knowsAbout": ["Direito Previdenciário", "Aposentadoria", "Revisão de Benefício", "INSS", "BPC/LOAS"],
+        "sameAs": ["https://www.instagram.com/fellipe_rosse/"]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-content {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .news-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(197, 160, 89, 0.1);
+            color: var(--accent-gold);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .news-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .news-excerpt {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: #b0b0b0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .news-footer {
+            padding: 20px 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            background: #fafafa;
+        }
+
+        .read-more {
+            color: var(--primary-dark);
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--accent-gold);
+            gap: 10px;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--white);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            border-radius: 20px;
+            position: relative;
+            overflow-y: auto;
+            padding: 60px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--accent-gold);
+            transform: rotate(90deg);
+        }
+
+        .modal-full-text {
+            line-height: 1.8;
+            color: var(--primary-light);
+            font-size: 1.1rem;
+        }
+
+        .modal-full-text h3 {
+            font-family: var(--font-heading);
+            color: var(--primary-dark);
+            margin: 30px 0 15px;
+            font-size: 1.5rem;
+        }
+
+        .modal-full-text strong {
+            color: var(--accent-gold);
+        }
+
+        .modal-full-text blockquote {
+            border-left: 4px solid var(--accent-gold);
+            padding-left: 20px;
+            margin: 30px 0;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Spinner -->
+    <div id="page-loader" class="page-loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-logo">Dr. <span>Fellipe</span></div>
+        </div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">Dr. <span>Fellipe</span></div>
+            <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home">Início</a></li>
+                <li><a href="index.html#servicos">Serviços</a></li>
+                <li><a href="noticias.html" class="active">Notícias</a></li>
+                <li><a href="index.html#analise" class="btn-cta-nav">Consultar Caso</a></li>
+                <li><a href="https://wa.me/5531992552080" class="btn-whatsapp-nav"><i class="fab fa-whatsapp"></i>
+                        Contato</a></li>
+                <li><a href="https://www.instagram.com/fellipe_rosse/" target="_blank" class="nav-instagram"><i
+                            class="fab fa-instagram"></i></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="padding-top: 150px; min-height: 80vh;">
+        <section class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <span class="news-tag">Informativo Jurídico</span>
+                <h1
+                    style="font-family: var(--font-heading); font-size: 3.5rem; color: var(--primary-dark); margin: 20px 0;">
+                    Notícias e Decisões
+                </h1>
+                <div style="width: 80px; height: 4px; background: var(--accent-gold); margin: 0 auto 30px;"></div>
+                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: 0 auto;">
+                    Acompanhe as principais atualizações legislativas e vitórias recentes no Judiciário Previdenciário.
+                </p>
+            </div>
+
+            <div class="news-grid">
+                <!-- Notícia 1 -->
+                <article class="news-card" onclick="openModal('news-1')">
+                    <div class="news-content">
+                        <span class="news-tag">Atualização 2026</span>
+                        <h2 class="news-title">Reajuste INSS 2026: Benefícios Acima do Mínimo Terão Aumento de 3,9%</h2>
+                        <p class="news-excerpt">
+                            O governo confirmou o índice de correção baseado no INPC de 2025. Com a atualização, o novo
+                            teto previdenciário chega a R$ 8.475,55.
+                        </p>
+                        <div class="news-date">
+                            <i class="far fa-calendar-alt"></i> 20 de Fevereiro de 2026
+                        </div>
+                    </div>
+                    <div class="news-footer">
+                        <span class="read-more">Ler notícia completa <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </article>
+
+                <!-- Notícia 2 -->
+                <article class="news-card" onclick="openModal('news-2')">
+                    <div class="news-content">
+                        <span class="news-tag">Nova Legislação</span>
+                        <h2 class="news-title">Nova Lei 15.327 barra descontos automáticos e reforça segurança no
+                            Consignado</h2>
+                        <p class="news-excerpt">
+                            Sancionada recentemente, a legislação proíbe descontos de mensalidades associativas direto
+                            na folha e exige biometria facial para novos empréstimos.
+                        </p>
+                        <div class="news-date">
+                            <i class="far fa-calendar-alt"></i> 18 de Fevereiro de 2026
+                        </div>
+                    </div>
+                    <div class="news-footer">
+                        <span class="read-more">Ler notícia completa <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </article>
+            </div>
+
+            <div id="leads"
+                style="background: var(--primary-dark); padding: 60px; border-radius: 20px; text-align: center; color: white; margin-bottom: 80px;">
+                <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 20px;">Ficou com dúvida
+                    sobre alguma dessas notícias?</h2>
+                <p style="color: var(--text-muted); margin-bottom: 40px; max-width: 600px; margin-inline: auto;">
+                    Entre em contato para entender como essas mudanças afetam o seu benefício especificamente.
+                </p>
+                <a href="https://wa.me/5531992552080" class="btn btn-gold">Retire suas dúvidas</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Full News -->
+    <div class="modal-overlay" id="newsModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></span>
+            <div id="modalBody" class="modal-full-text">
+                <!-- Content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden Contents -->
+    <template id="news-1">
+        <span class="news-tag">Atualização 2026</span>
+        <h2
+            style="font-family: var(--font-heading); color: var(--primary-dark); font-size: 2.2rem; margin-bottom: 25px;">
+            Reajuste INSS 2026: Benefícios Acima do Mínimo Terão Aumento de 3,9%</h2>
+        <p>A partir de fevereiro de 2026, os aposentados e pensionistas do Instituto Nacional do Seguro Social (INSS)
+            que recebem valores superiores ao salário mínimo terão seus benefícios reajustados. O índice oficial de
+            correção é de <strong>3,9%</strong>, acompanhando a variação do INPC consolidado ao longo de 2025.</p>
+        <p>Este ajuste é fundamental para manter o poder de compra dos segurados, aplicando-se a todas as modalidades de
+            aposentadoria e pensão que superam o piso previdenciário nacional.</p>
+
+        <h3>Novo Teto Previdenciário</h3>
+        <p>Com a aplicação do reajuste, o valor máximo pago pelo INSS (Teto) sobe de R$ 8.157,40 para <strong>R$
+                8.475,55</strong> em 2026. Esse montante serve como limite para qualquer benefício pago pelo regime
+            geral.</p>
+
+        <h3>Como funciona o cálculo?</h3>
+        <p>O INPC é o termômetro utilizado pelo governo para medir o custo de vida. Para quem já recebia o benefício em
+            janeiro de 2025, o reajuste será integral. Para novos aposentados ao longo de 2025, o aumento será
+            proporcional aos meses de recebimento.</p>
+
+        <h3>Calendário de Pagamentos</h3>
+        <p>O cronograma segue o número final do cartão:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Acima do mínimo:</strong> Pagamentos iniciam em 02 de Fevereiro de 2026.</li>
+            <li><strong>Salário mínimo:</strong> Pagamentos iniciam em 26 de Janeiro de 2026.</li>
+        </ul>
+
+        <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+            <a href="index.html#analise" class="btn btn-gold">Deseja revisar seu reajuste? Fale com o Dr. Fellipe</a>
+        </div>
+    </template>
+
+    <template id="news-2">
+        <span class="news-tag">Nova Legislação</span>
+        <h2
+            style="font-family: var(--font-heading); color: var(--primary-dark); font-size: 2.2rem; margin-bottom: 25px;">
+            Nova Lei 15.327 barra descontos automáticos e reforça segurança no Consignado</h2>
+        <p>A nova <strong>Lei nº 15.327/2026</strong> trouxe mudanças drásticas e positivas para a proteção financeira
+            de aposentados e pensionistas do INSS. O foco é combater abusos relacionados a descontos associativos e
+            fraudes em empréstimos.</p>
+
+        <h3>Fim das Mensalidades Automáticas</h3>
+        <p>A maior mudança é a proibição do desconto automático de mensalidades de associações direto na folha de
+            pagamento. Agora, o beneficiário que desejar se associar deve pagar via boleto ou cartão, garantindo total
+            controle sobre seu dinheiro.</p>
+
+        <h3>Segurança Reforçada no Consignado</h3>
+        <p>Para evitar contratações fraudulentas, a lei estabelece novas travas de segurança:</p>
+        <ul style="margin-left: 20px;">
+            <li><strong>Bloqueio Automático:</strong> O benefício é bloqueado para novos empréstimos após cada
+                contratação.</li>
+            <li><strong>Biometria Obrigatória:</strong> O desbloqueio exige biometria facial ou digital do titular.</li>
+            <li><strong>Fim do Telefone:</strong> Proibição total de empréstimos fechados por chamadas telefônicas.</li>
+        </ul>
+
+        <blockquote>
+            "Essa legislação representa um marco na defesa da dignidade financeira do idoso, impedindo que descontos
+            'fantasmas' corroam o sustento das famílias."
+        </blockquote>
+
+        <div style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px;">
+            <a href="index.html#analise" class="btn btn-gold">Identificou um desconto indevido? Clique aqui</a>
+        </div>
+    </template>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Dr. <span>Fellipe</span></div>
+                <div class="footer-info">
+                    <p>Atendimento especializado em Direito Previdenciário com foco em resultados e excelência.</p>
+                </div>
+                <div class="footer-contact">
+                    <p><i class="fab fa-whatsapp"></i> (31) 9 9255-2080</p>
+                    <p><i class="fas fa-globe"></i> Atendimento em todo o Brasil</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-credential">Dr. Fellipe - Advocacia Previdenciária</p>
+                <p class="footer-oab">Inscrito na Ordem dos Advogados do Brasil desde 2018</p>
+                <p class="footer-rights">&copy; 2026 Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function openModal(id) {
+            const modal = document.getElementById('newsModal');
+            const body = document.getElementById('modalBody');
+            const template = document.getElementById(id);
+
+            body.innerHTML = template.innerHTML;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('newsModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scroll
+        }
+
+        // Close on overlay click
+        window.onclick = function (event) {
+            const modal = document.getElementById('newsModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
